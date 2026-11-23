@@ -1,0 +1,31 @@
+{
+  "condition": "B0",
+  "ready": false,
+  "features": {
+    "memory_mode": "none",
+    "top_k": null,
+    "routing_mode": "er_only",
+    "primary_router": "rule_similarity",
+    "voi_enabled": false,
+    "action_selector": "specialist_heuristic"
+  },
+  "common": {
+    "dataset": "datasets/raw/longitudinal_benchmark_50.jsonl",
+    "case_count": 50,
+    "memory_source": "fixed",
+    "model": null,
+    "model_version": null,
+    "decoding": null,
+    "minute_limit": null,
+    "agent_registry": null,
+    "diagnosis_candidates": null,
+    "evaluation": null,
+    "action_set": null,
+    "patient_split": null,
+    "repeats": null,
+    "fixed_memory": null,
+    "routing_utility": null,
+    "voi_model": null,
+    "voi_horizon": null
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "locdi.development_features.v1",
+  "ready": false,
+  "llm": {
+    "schema_version": 1,
+    "purpose": "development_llm",
+    "ready": false,
+    "endpoint": "http://127.0.0.1:11434/v1",
+    "model": "qwen2.5:1.5b-instruct",
+    "model_version": "dev-er-only-20261028",
+    "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+    "allowed_models": [
+      "qwen2.5:1.5b-instruct"
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_output_tokens": 1024,
+    "timeout_seconds": 120,
+    "request_retries": 0,
+    "max_requests": 12,
+    "minute_limit": 120,
+    "models_root": null,
+    "registry_path": "configs/agent_registry.specialty_development.json",
+    "agent_bindings": [
+      {
+        "agent_id": "dev-shared-er",
+        "prompt": "prompts/er_department_system.txt",
+        "available": true,
+        "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "shared_base_model": true
+      },
+      {
+        "agent_id": "dev-shared-cardiology",
+        "prompt": "prompts/specialty/cardiology.txt",
+        "available": true,
+        "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "shared_base_model": true
+      },
+      {
+        "agent_id": "dev-shared-neurology",
+        "prompt": "prompts/specialty/neurology.txt",
+        "available": true,
+        "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "shared_base_model": true
+      },
+      {
+        "agent_id": "dev-shared-nephrology",
+        "prompt": "prompts/specialty/nephrology.txt",
+        "available": true,
+        "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "shared_base_model": true
+      },
+      {
+        "agent_id": "dev-shared-endocrinology",
+        "prompt": "prompts/specialty/endocrinology.txt",
+        "available": true,
+        "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "shared_base_model": true
+      },
+      {
+        "agent_id": "dev-shared-pulmonology",
+        "prompt": "prompts/specialty/pulmonology.txt",
+        "available": true,
+        "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "shared_base_model": true
+      }
+    ],
+    "patient_prompt": "prompts/patient_system.txt"
+  },
+  "routing_utility_path": null,
+  "voi_model_path": "../001_synthea-docker/experiments/34_live_action_policy/output/live_action_policy_v1/voi_model.json",
+  "diagnosis_catalog_path": null,
+  "horizon": 2,
+  "voi_binding": null
+}

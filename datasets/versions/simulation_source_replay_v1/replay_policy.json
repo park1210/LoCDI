@@ -1,0 +1,15 @@
+{
+  "schema_version": "locdi.D3.replay_semantics.v1",
+  "dataset_version": "simulation_source_replay_v1",
+  "applies_to_manifest_fingerprint": "40e001271e8cd8f3e7db0095b3fe00e05ea5c85be8fb9b41536ac6f8b6cab6c2",
+  "purpose": "DEVELOPMENT_ONLY",
+  "all_ask_interactions": {"synthetic_interaction": true, "question_is_template": true, "answer_is_original_source_value": true, "actual_conversation_observed": false},
+  "all_test_interactions": {"ordering_is_simulated": true, "result_is_original_source_value": true, "recorded_time_is_clinical_turnaround": false},
+  "strict_source": {"execution_allowed": false, "blocker": "ACTUAL_AVAILABILITY_UNVERIFIED"},
+  "explicit_development_proxy": {"requires_explicit_acceptance": true, "initial_content": "STATIC_AGE_SEX_ENCOUNTER_METADATA_ONLY", "result_release": "AFTER_ACTION_AND_RECORDED_SECOND_INTERVAL_UPPER_BOUND", "memory_available_at": "RECORDED_SECOND_INTERVAL_UPPER_BOUND_PROXY_ONLY"},
+  "clinical_review_status": "NOT_REVIEWED",
+  "assigned_split": null,
+  "source_backed_consult_enabled": false,
+  "clinical_metrics": "NOT_EVALUATED",
+  "research_readiness": false
+}

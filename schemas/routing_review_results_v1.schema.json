@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Private caller-supplied independent review results; no automatic verdicts",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "purpose", "policy_fingerprint", "reference_reviews", "response_reviews"],
+  "properties": {
+    "schema_version": {"const": "locdi.routing_review_results.v1"},
+    "purpose": {"enum": ["routing_training", "TEST_ONLY"]},
+    "policy_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reference_reviews": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "response_reviews": {"type": "array", "items": {"$ref": "#/$defs/response"}}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nullable_text": {"type": ["string", "null"]},
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewer_ref", "reviewer_kind", "reviewer_qualification", "independent", "procedure_version", "reviewed_at"],
+      "properties": {
+        "status": {"enum": ["REVIEWED", "NOT_REVIEWED"]},
+        "reviewer_ref": {"$ref": "#/$defs/nullable_text"},
+        "reviewer_kind": {"$ref": "#/$defs/nullable_text"},
+        "reviewer_qualification": {"$ref": "#/$defs/nullable_text"},
+        "independent": {"type": ["boolean", "null"]},
+        "procedure_version": {"$ref": "#/$defs/nullable_text"},
+        "reviewed_at": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "axis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["policy_id", "status", "verdict", "clinical_evidence_rationale", "not_evaluable_reason"],
+      "properties": {
+        "policy_id": {"$ref": "#/$defs/text"},
+        "status": {"enum": ["REVIEWED", "NOT_REVIEWED", "NOT_EVALUABLE"]},
+        "verdict": {"type": ["boolean", "null"]},
+        "clinical_evidence_rationale": {"$ref": "#/$defs/nullable_text"},
+        "not_evaluable_reason": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["observation_reviewed", "memory_reviewed", "visibility_reviewed", "proxy_reviewed", "proxy_fitting_approved", "proxy_rationale"],
+      "properties": {
+        "observation_reviewed": {"type": ["boolean", "null"]},
+        "memory_reviewed": {"type": ["boolean", "null"]},
+        "visibility_reviewed": {"type": ["boolean", "null"]},
+        "proxy_reviewed": {"type": ["boolean", "null"]},
+        "proxy_fitting_approved": {"type": ["boolean", "null"]},
+        "proxy_rationale": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "reference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_ref", "patient_id", "visit_id", "decision_id", "source_ref", "source_fingerprint", "observation_fingerprint", "memory_fingerprint", "condition_candidates_fingerprint", "reference_ref", "reference_fingerprint", "timing_status", "reference_basis", "response_blinded", "input_scope", "review", "clinical_evidence_rationale", "uncertainty_reason"],
+      "properties": {
+        "case_ref": {"$ref": "#/$defs/text"}, "patient_id": {"$ref": "#/$defs/text"},
+        "visit_id": {"$ref": "#/$defs/text"}, "decision_id": {"$ref": "#/$defs/text"},
+        "source_ref": {"$ref": "#/$defs/text"}, "source_fingerprint": {"$ref": "#/$defs/sha"},
+        "observation_fingerprint": {"$ref": "#/$defs/sha"}, "memory_fingerprint": {"$ref": "#/$defs/sha"},
+        "condition_candidates_fingerprint": {"$ref": "#/$defs/sha"},
+        "reference_ref": {"$ref": "#/$defs/text"}, "reference_fingerprint": {"$ref": "#/$defs/sha"},
+        "timing_status": {"enum": ["CURRENT_DECISION_REFERENCE_VALID", "RETROSPECTIVE_OUTCOME_ONLY", "REFERENCE_TIMING_NOT_REVIEWED", "REFERENCE_REJECTED"]},
+        "reference_basis": {"enum": ["SOURCE_CONDITION", "INDEPENDENT_CONTEMPORANEOUS_REFERENCE"]},
+        "response_blinded": {"type": ["boolean", "null"]},
+        "input_scope": {"$ref": "#/$defs/scope"}, "review": {"$ref": "#/$defs/review"},
+        "clinical_evidence_rationale": {"$ref": "#/$defs/nullable_text"},
+        "uncertainty_reason": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "response": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_ref", "patient_id", "decision_id", "agent_id", "response_ref", "response_fingerprint", "reference_ref", "reference_fingerprint", "review", "axes"],
+      "properties": {
+        "case_ref": {"$ref": "#/$defs/text"}, "patient_id": {"$ref": "#/$defs/text"},
+        "decision_id": {"$ref": "#/$defs/text"}, "agent_id": {"$ref": "#/$defs/text"},
+        "response_ref": {"$ref": "#/$defs/text"}, "response_fingerprint": {"$ref": "#/$defs/sha"},
+        "reference_ref": {"$ref": "#/$defs/text"}, "reference_fingerprint": {"$ref": "#/$defs/sha"},
+        "review": {"$ref": "#/$defs/review"},
+        "axes": {
+          "type": "object", "additionalProperties": false,
+          "required": ["diagnosis_correctness", "abstention_appropriateness", "routing_success"],
+          "properties": {
+            "diagnosis_correctness": {"$ref": "#/$defs/axis"},
+            "abstention_appropriateness": {"$ref": "#/$defs/axis"},
+            "routing_success": {"$ref": "#/$defs/axis"}
+          }
+        }
+      }
+    }
+  }
+}

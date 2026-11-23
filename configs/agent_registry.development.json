@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "agents": [
+    {
+      "agent_id": "dev-er",
+      "role": "er",
+      "department": "",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": []
+    }
+  ]
+}

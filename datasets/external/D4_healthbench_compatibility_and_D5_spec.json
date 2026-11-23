@@ -1,0 +1,55 @@
+{
+  "schema_version": "locdi.D4.healthbench_mapping.v1",
+  "dataset": "HealthBench",
+  "source_revision": "40ee1968852fc57f625934251ac22be47077a8fb",
+  "adapter_implemented": false,
+  "model_calls": 0,
+  "evaluation_executed": false,
+  "compatibility": {
+    "diagnostic_response_quality": {"status": "PARTIALLY_EVALUABLE", "scope": "Rubric-based response quality for relevant questions; no structured diagnosis accuracy Gold"},
+    "uncertainty_handling": {"status": "EVALUABLE_WITH_ADAPTER", "scope": "Published hedging/context-seeking rubrics and original conversation response"},
+    "abstention_appropriateness": {"status": "PARTIALLY_EVALUABLE", "scope": "Rubric-specific deferral/uncertainty behavior, not the internal routing abstention correctness contract"},
+    "longitudinal_memory": {"status": "NOT_EVALUABLE", "scope": "Conversation history is not linked patient visits or retrieval relevance/cutoff Gold"},
+    "specialty_routing": {"status": "NOT_EVALUABLE", "scope": "No per-agent utility/correctness or independent target-specialty routing outcome"},
+    "ask_test_selection": {"status": "PARTIALLY_EVALUABLE", "scope": "Textual context-seeking advice only; no executable source-backed Ask/Test outcomes"},
+    "agent_workflow": {"status": "NOT_EVALUABLE", "scope": "No reference ER/Specialty workflow or Scheduler trace"},
+    "multi_step_voi": {"status": "NOT_EVALUABLE", "scope": "No belief prior, likelihood, action-outcome distribution or sequential utility contract"},
+    "clinical_timing": {"status": "NOT_EVALUABLE", "scope": "No verified clinical request/result receipt clock"},
+    "consult": {"status": "PARTIALLY_EVALUABLE", "scope": "Referral advice quality when a rubric covers it; no physical Consult execution or source note"}
+  },
+  "mapping": {
+    "external_sample_id": "prompt_id kept private; public ordinal and source hash only",
+    "external_input": "prompt list of role/content messages, unchanged order and content",
+    "input_task_type": "Open-ended completion of the final assistant turn after final user message",
+    "allowed_context": "Original prompt only; historical assistant turns preserved as supplied context",
+    "private_reference": "rubrics, ideal_completions_data, example_tags, canary and any non-prompt fields",
+    "expected_output_format": "Free-form assistant response text; no forced clinical Action JSON",
+    "original_evaluation_method": "Pinned simple-evals HealthBench per-rubric grader and weighted aggregation; do not execute during D4",
+    "locdi_agent_interface": "D5 separate external dialogue facade over an explicitly approved client, not the hospital Scheduler case format",
+    "unsupported_fields": ["patient_id", "visit_id", "arrival_time", "memory_cutoff", "source_event_store", "test_release_time", "consult_result", "routing_gold", "outcome_likelihood"],
+    "conversion_loss": "None intended for prompt-only dialogue facade. Forcing into HospitalCaseRuntime would lose original objective and is excluded.",
+    "review_status": "STRUCTURAL_SCHEMA_INSPECTED_NOT_CLINICAL_REFERENCE_APPROVED"
+  },
+  "split_policy": {
+    "original_split": "test",
+    "assigned_internal_split": null,
+    "patient_level_split_possible": false,
+    "independent_test_approved": false,
+    "model_pretraining_contamination": "UNKNOWN",
+    "known_local_training_use": "No matching external-benchmark training binding found in inspected configs/experiments/prompts/scripts; incomplete training provenance prevents proof of absence",
+    "development_exposure": "Full-file schema/metadata inspection in D4; no agent inference or prompt optimization",
+    "D5_proposal": "Predeclare at most three sample IDs privately for development before prompt work. Preserve official test label; exclude development examples from any later independent aggregate. Do not claim patient-independent remainder."
+  },
+  "D5_execution_gate": {
+    "default": "DRY_RUN",
+    "maximum_development_cases": 3,
+    "model_and_grader_calls_require_separate_explicit_authorization": true,
+    "grader_environment": "Pinned evaluator code uses PEP604 union annotations and zip(strict=True), so unchanged execution is incompatible with current Python 3.9.7; provision/version an approved separate environment rather than altering current Core",
+    "request_budget": "Preflight counts response and every rubric grading call plus allowed repairs; proposed upper bound 80 dispatches, block if required count exceeds bound; never silently omit rubric items",
+    "retry": "No unbounded grader retries; any bounded wrapper differences must be disclosed as adapted evaluation",
+    "rubric_not_to_agent": true,
+    "no_fitting": true,
+    "clinical_diagnosis_gold": null,
+    "research_evaluation_ready": false
+  }
+}

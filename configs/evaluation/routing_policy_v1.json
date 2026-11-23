@@ -1,0 +1,37 @@
+{
+  "schema_version": "locdi.evaluation_policy_bundle.v1",
+  "policies": {
+    "diagnosis_correctness": {
+      "policy_id": "locdi.diagnosis_correctness.v1",
+      "target": "diagnosis_correctness",
+      "version": 1,
+      "fit_allowed": true,
+      "response_requirement": "SUPPORTED_NAMED_DIAGNOSIS_ONLY",
+      "unresolved": "NOT_EVALUABLE_NO_BOOLEAN_IMPUTATION",
+      "reference_requirement": "INDEPENDENT_REVIEWED_CURRENT_DECISION_REFERENCE",
+      "score_semantics": "uncalibrated_similarity_weighted_correctness"
+    },
+    "abstention_appropriateness": {
+      "policy_id": "locdi.abstention_appropriateness.v1",
+      "target": "abstention_appropriateness",
+      "version": 1,
+      "fit_allowed": false,
+      "response_requirement": "INDEPENDENT_HUMAN_ASSESSMENT_OF_DEFERRAL",
+      "unresolved": "REVIEW_SEPARATELY_NEVER_DIAGNOSIS_CORRECTNESS",
+      "reference_requirement": "REVIEWED_INFORMATION_SUFFICIENCY_AND_ABSTENTION_CRITERIA"
+    },
+    "routing_success": {
+      "policy_id": "locdi.routing_success.v1",
+      "target": "routing_success",
+      "version": 1,
+      "fit_allowed": false,
+      "response_requirement": "SEPARATE_ROUTING_REFERENCE_CONTRACT_REQUIRED",
+      "unresolved": "NO_AUTOMATIC_ROUTING_LABEL",
+      "reference_requirement": "NOT_IMPLEMENTED_FOR_DIAGNOSIS_ONLY_COLLECTION"
+    }
+  },
+  "reference_procedure_version": "locdi.reference_review.v1",
+  "response_procedure_version": "locdi.response_review.v1",
+  "reviewer_kind": "HUMAN_CLINICAL_REVIEWER",
+  "research_evaluation_ready": false
+}

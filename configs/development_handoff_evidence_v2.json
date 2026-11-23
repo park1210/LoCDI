@@ -1,0 +1,38 @@
+{
+  "base_config_path": "configs/development_specialty_llm.json",
+  "max_requests": 10,
+  "ready": false,
+  "routing": "static_development",
+  "runner_retries": 0,
+  "schema_version": "locdi.live_handoff_setup.v1",
+  "stage_bindings": [
+    {
+      "agent_id": "dev-shared-er",
+      "model": "qwen2.5:1.5b-instruct",
+      "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "prompt": "prompts/handoff/v1/er_initial.txt",
+      "prompt_sha256": "7855d4f3711dbf35ce07ff56413b114ccb59f4ed742f6d8f618eeb39ec5e6873",
+      "stage": "ER_INITIAL_DECISION",
+      "version": "dev-er-only-20261028"
+    },
+    {
+      "agent_id": "dev-shared-neurology",
+      "model": "qwen2.5:1.5b-instruct",
+      "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "prompt": "prompts/handoff/v2/specialty_assessment.txt",
+      "prompt_sha256": "1db4dd51530d35f3634c8493bebb684ec23cc1009430b949bc914ec8197917a7",
+      "stage": "SPECIALTY_ASSESSMENT",
+      "version": "dev-er-only-20261028"
+    },
+    {
+      "agent_id": "dev-shared-er",
+      "model": "qwen2.5:1.5b-instruct",
+      "model_identifier": "sha256:65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "prompt": "prompts/handoff/v1/er_reassessment.txt",
+      "prompt_sha256": "41f87c6e664d8b616bbfb8e3ff72f866ed66ae3cfdc18c48f9f5de9dd9782665",
+      "stage": "ER_REASSESSMENT",
+      "version": "dev-er-only-20261028"
+    }
+  ],
+  "target_department": "neurology"
+}

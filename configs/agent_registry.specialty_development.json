@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "agents": [
+    {
+      "agent_id": "dev-shared-er",
+      "role": "er",
+      "department": "",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": []
+    },
+    {
+      "agent_id": "dev-shared-cardiology",
+      "role": "specialty",
+      "department": "cardiology",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": [
+        "chest pain",
+        "troponin",
+        "ecg",
+        "ekg",
+        "arrhythmia",
+        "stemi",
+        "nstemi"
+      ]
+    },
+    {
+      "agent_id": "dev-shared-neurology",
+      "role": "specialty",
+      "department": "neurology",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": [
+        "diplopia",
+        "ptosis",
+        "fatigable",
+        "electromyography",
+        "emg",
+        "weakness",
+        "myasthen",
+        "cranial"
+      ]
+    },
+    {
+      "agent_id": "dev-shared-nephrology",
+      "role": "specialty",
+      "department": "nephrology",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": [
+        "creatinine",
+        "proteinuria",
+        "hematuria",
+        "renal",
+        "kidney"
+      ]
+    },
+    {
+      "agent_id": "dev-shared-endocrinology",
+      "role": "specialty",
+      "department": "endocrinology",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": [
+        "thyroid",
+        "diabetes",
+        "hyperglycemia",
+        "hypoglycemia",
+        "adrenal"
+      ]
+    },
+    {
+      "agent_id": "dev-shared-pulmonology",
+      "role": "specialty",
+      "department": "pulmonology",
+      "model": "qwen2.5:1.5b-instruct",
+      "version": "dev-er-only-20261028",
+      "keywords": []
+    }
+  ]
+}
